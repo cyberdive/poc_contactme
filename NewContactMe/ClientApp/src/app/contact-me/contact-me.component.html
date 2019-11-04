@@ -1,0 +1,59 @@
+<form class="container" (ngSubmit)="onContinue(loginForm)" #loginForm="ngForm" *ngIf="action == 'login'">
+  <h2>
+    Enter your personal information
+  </h2>
+  <div class="form-group">
+    <label for="clientNumber" class="col-md-4">
+      Client number:
+    </label>
+    <input type="text" id="clientNumber" name="clientNumber" class="form-control" required length="19" max-length="19" [(ngModel)]="clientNumber" />
+  </div>
+  <div class="form-group">
+    <label for="birthDate" class="col-md-4">
+      Birth date:
+    </label>
+    <input type="date" id="birthDate" name="birthDate" class="form-control" required [(ngModel)]="birthDate" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-failed" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Continue</button>
+  </div>
+</form>
+
+<form class="container" (ngSubmit)="onConfirm(updateForm)" #updateForm="ngForm" *ngIf="action == 'update'">
+  <h2>
+    Enter your email address
+  </h2>
+  <div class="form-group">
+    Client number: {{ client.clientNumber }}
+  </div>
+  <div class="form-group">
+    <label for="email" class="col-md-4">
+      E-mail:
+    </label>
+    <input type="email" id="email" name="email" class="form-control" required [(ngModel)]="email" />
+  </div>
+  <div class="form-group">
+    <label for="emailToConfirm" class="col-md-4">
+      Confirm your e-mail:
+    </label>
+    <input type="email" id="emailToConfirm" name="emailToConfirm" class="form-control" required [(ngModel)]="emailToConfirm" />
+  </div>
+  <div class="form-group">
+    <input type="checkBox" id="sendMail" name="sendMail" [(ngModel)]="sendMail" /> I want to receive an e-mail!
+  </div>
+  <div class="form-group">
+    <button class="btn btn-failed" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-primary" type="submit" [disabled]="updateForm.invalid">Confirm</button>
+  </div>
+</form>
+
+<div id="error" class="container alert alert-danger" role="alert" *ngIf="errors != ''">
+  {{ errors }}
+</div>
+<div id="success" class="container alert alert-success" role="alert" *ngIf="success != ''" [innerHTML]="success">
+</div>
+
+<div class="container" *ngIf="action == 'updated'">
+  <button class="btn btn-failed" (click)="onCancel()">Back</button>
+</div>
