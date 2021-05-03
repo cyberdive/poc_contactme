@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('DEV') {
       steps {
-        build 'Build source'
+       // build 'Build source'
+         echo 'coucou'
       }
     }
 
